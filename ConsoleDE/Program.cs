@@ -1,5 +1,12 @@
-// See https://aka.ms/new-console-template for more information
+using Furball.Engine;
+using Furball.Engine.Engine;
 
-using System;
+namespace ConsoleDE {
+    internal static class Program {
+        internal static void Main(string[] args) {
+            ConsoleDEGame game = new();
+            game.Run();
+        }
+    }
+}
 
-Console.WriteLine("Hello, World!");

@@ -5,4 +5,63 @@
         <Nullable>enable</Nullable>
         <LangVersion>9</LangVersion>
     </PropertyGroup>
+    <ItemGroup>
+      <Reference Include="EvDevSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\EvDevSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Engine, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Engine.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Mola.Bindings, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Mola.Bindings.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.Backends.Direct3D11, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.Backends.Direct3D11.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.Backends.Dummy, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.Backends.Dummy.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.Backends.Mola, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.Backends.Mola.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.Backends.OpenGL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.Backends.OpenGL.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.Backends.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.Backends.Shared.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.Backends.Veldrid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.Backends.Veldrid.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.Backends.Vulkan, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.Backends.Vulkan.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.Helpers.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Vixie.OpenGLDetector, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Vixie.OpenGLDetector.dll</HintPath>
+      </Reference>
+      <Reference Include="Furball.Volpe, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\Furball\Furball.Engine\bin\Debug\netstandard2.0\Furball.Volpe.dll</HintPath>
+      </Reference>
+      
+      <Content Include="..\..\Furball\Furball.Game\bin\Debug\net6.0\*.dll">
+        <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+
+      <Content Include="..\..\Furball\Furball.Game\bin\Debug\net6.0\*.so">
+        <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Eto.Platform.Gtk" Version="2.7.1" />
+      <PackageReference Include="FontStashSharp" Version="1.2.6" />
+      <PackageReference Include="SixLabors.Fonts" Version="1.0.0-beta18" />
+    </ItemGroup>
 </Project>
