@@ -1,5 +1,6 @@
 using ConsoleDE.Base;
 using ConsoleDE.Screens;
+using ConsoleDE.Services;
 using Furball.Engine;
 using Silk.NET.Windowing;
 using Fonts = ConsoleDE.Base.Fonts;
@@ -9,8 +10,9 @@ namespace ConsoleDE {
         public ConsoleDEGame() : base(new MainScreen()) {}
 
         public new static ConsoleDEGame Instance => (ConsoleDEGame)FurballGame.Instance;
+        public IWindowSuspensionService WindowSuspensionService;
 
-        private ColorPalette palette = Palettes.AllPalettes[0];
+        private ColorPalette palette = Palettes.AllPalettes[1];
         public ColorPalette CurrentPalette {
             get => this.palette;
             set {
@@ -36,6 +38,9 @@ namespace ConsoleDE {
             #endif
             
             this.WindowManager.TargetUnfocusedUpdaterate = 30;
+
+//            this.WindowSuspensionService = new WindowBackendSuspensionService(this);
+            this.WindowSuspensionService = new WindowStateSuspensionService(this);
         }
 
         protected override void LoadContent() {

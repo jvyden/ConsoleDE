@@ -37,15 +37,10 @@ namespace ConsoleDE.Screens {
         }
 
         private void hideButtonOnClick(object? sender, MouseButtonEventArgs e) {
-            Backend currentBackend = FurballGame.Instance.WindowManager.Backend;
-            EventLoop currentEventLoop = FurballGame.Instance.EventLoop;
-
-            FurballGame.Instance.WindowManager.Backend = Backend.Dummy;
-            FurballGame.Instance.RecreateWindow(new HeadlessEventLoop());
+            ConsoleDEGame.Instance.WindowSuspensionService.Hide();
 
             FurballGame.GameTimeScheduler.ScheduleMethod(delegate {
-                FurballGame.Instance.WindowManager.Backend = currentBackend;
-                FurballGame.Instance.RecreateWindow(currentEventLoop);
+                ConsoleDEGame.Instance.WindowSuspensionService.Show();
             }, FurballGame.Time + 5000d);
         }
 
