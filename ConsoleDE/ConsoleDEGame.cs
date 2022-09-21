@@ -3,6 +3,7 @@ using ConsoleDE.Base.UserInterface;
 using ConsoleDE.Screens;
 using ConsoleDE.Services;
 using Furball.Engine;
+using Furball.Engine.Engine;
 using Silk.NET.Windowing;
 using Fonts = ConsoleDE.Base.Styling.Fonts;
 
@@ -13,7 +14,7 @@ namespace ConsoleDE {
         public new static ConsoleDEGame Instance => (ConsoleDEGame)FurballGame.Instance;
         public IWindowSuspensionService WindowSuspensionService;
 
-        private ColorPalette palette = Palettes.AllPalettes[1];
+        private ColorPalette palette = Palettes.AllPalettes[0];
         public ColorPalette CurrentPalette {
             get => this.palette;
             set {
@@ -42,6 +43,12 @@ namespace ConsoleDE {
 
 //            this.WindowSuspensionService = new WindowBackendSuspensionService(this);
             this.WindowSuspensionService = new WindowStateSuspensionService(this);
+            
+            base.AfterScreenChange += AfterScreenChange;
+        }
+        
+        private new void AfterScreenChange(object? sender, Screen e) {
+            (this.RunningScreen as ConsoleScreen)?.UpdateColors(this.CurrentPalette);
         }
 
         protected override void LoadContent() {

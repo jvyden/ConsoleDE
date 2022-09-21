@@ -8,13 +8,6 @@ using Furball.Vixie.Backends.Shared;
 namespace ConsoleDE.Base.Styling {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class Palettes {
-        public static readonly ColorPalette Light = new() {
-            PrimaryColor = Color.LightGray,
-            SecondaryColor = Color.DimGray,
-            TextColor = Color.Black,
-            BackgroundColor = Color.White,
-        };
-        
         public static readonly ColorPalette Steel = new() {
             PrimaryColor = new Color(10, 9, 12),
             SecondaryColor = new Color(52, 49, 63),
@@ -22,6 +15,13 @@ namespace ConsoleDE.Base.Styling {
             BackgroundColor = new Color(27, 25, 33),
         };
         
+        public static readonly ColorPalette Light = new() {
+            PrimaryColor = Color.LightGray,
+            SecondaryColor = Color.DimGray,
+            TextColor = Color.Black,
+            BackgroundColor = Color.White,
+        };
+
         public static readonly ColorPalette Purple = new() {
             PrimaryColor = new Color(112, 99, 198),
             SecondaryColor = new Color(127, 116, 194),

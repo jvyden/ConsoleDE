@@ -13,26 +13,40 @@ using Furball.Engine.Engine.Input.Events;
 using Furball.Vixie;
 
 namespace ConsoleDE.Base.UserInterface {
-    public class DrawableDesktopApplication : CompositeDrawable, ISupportsPalettes {
-        private DesktopApplication application;
+    public class DrawableDesktopApplication : CompositeDrawable {
+        private readonly DesktopApplication application;
+        private readonly DrawableBorderedBox box;
+        private readonly TexturedDrawable? icon = null;
+        private readonly ConsoleText text;
         
         public DrawableDesktopApplication(Vector2 position, DesktopApplication application) {
             this.application = application;
             string? iconPath = this.application.IconPath;
 
-            TexturedDrawable? icon = null;
+            this.Position = position;
+
+            this.box = new DrawableBorderedBox(Vector2.Zero, new Vector2(220, 220));
+            this.Drawables.Add(box);
+            
             if(iconPath != null) {
                 Texture iconTexture = ContentManager.LoadTextureFromFileCached(this.application.IconPath, ContentSource.External);
-                icon = new(iconTexture, position);
+                icon = new TexturedDrawable(iconTexture, Vector2.Zero);
+                this.icon.OriginType = OriginType.Center;
 
-                Vector2 targetSize = new(96, 96);
+                Vector2 targetSize = new(110, 110);
                 icon.Scale = targetSize / icon.Size;
 
                 this.Drawables.Add(icon);
             }
 
-            if(icon != null) {
-                icon.OnClick += this.onClick;
+            this.text = new ConsoleText(Vector2.Zero, Fonts.Default, application.DesktopFile.Name, 24);
+            this.text.OriginType = OriginType.Center;
+            this.Drawables.Add(this.text);
+            
+            this.Drawables.Add(this.box.OutlineDrawable);
+
+            foreach(Drawable drawable in this.Drawables) {
+                drawable.OnClick += this.onClick;
             }
             
             this.OnClick += this.onClick;
@@ -65,8 +79,18 @@ namespace ConsoleDE.Base.UserInterface {
             FurballGame.TimeStepMethods.Add(method = new FixedTimeStepMethod(1000, showAfterExecutionComplete));
         }
 
-        public void UpdateColors(ColorPalette palette) {
-            
+        public override Vector2 Size => this.box.Size;
+
+        public override void Update(double time) {
+            base.Update(time);
+
+            if(this.icon != null) {
+                this.icon.Position.X = this.box.Size.X / 2;
+                this.icon.Position.Y = (this.box.Size.Y / 2) - 15;
+            }
+
+            this.text.Position.X = this.box.Size.X / 2;
+            this.text.Position.Y = this.box.Size.Y - this.text.Size.Y - 5;
         }
     }
 }
