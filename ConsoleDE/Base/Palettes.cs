@@ -16,11 +16,24 @@ namespace ConsoleDE.Base {
         #region Palette List
         private static readonly List<ColorPalette> palettes = new();
         public static IReadOnlyList<ColorPalette> AllPalettes => palettes.AsReadOnly();
+
+        public static void AddPalette(ColorPalette palette) {
+            palettes.Add(palette);
+        }
+        
         static Palettes() {
-            FieldInfo[] fields = typeof(Palettes).GetFields();
-            foreach(FieldInfo field in fields.Where(f => f.FieldType == typeof(ColorPalette))) {
-                ColorPalette palette = (ColorPalette)(field.GetValue(null) ?? throw new ArgumentException($"{field.Name} is not a {nameof(ColorPalette)}"));
-                palettes.Add(palette);
+            IEnumerable<FieldInfo> fields = typeof(Palettes)
+                .GetFields()
+                .Where(f => f.FieldType == typeof(ColorPalette));
+            
+            foreach(FieldInfo field in fields) {
+                ColorPalette? palette = (ColorPalette?)(field.GetValue(null));
+
+                if(palette == null) {
+                    throw new ArgumentException($"{field.Name} is somehow not a {nameof(ColorPalette)}");
+                }
+                
+                palettes.Add(palette.Value);
             }
         }
         #endregion
