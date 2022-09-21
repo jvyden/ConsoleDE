@@ -1,9 +1,7 @@
 using System;
 using System.Numerics;
-using FontStashSharp;
 using Furball.Engine.Engine.Graphics.Drawables.UiElements;
 using Furball.Engine.Engine.Input.Events;
-using Furball.Vixie.Backends.Shared;
 
 namespace ConsoleDE.Base {
     /// <summary>

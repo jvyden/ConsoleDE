@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using FontStashSharp;
 using Furball.Engine.Engine.Graphics;
 using SixLabors.Fonts;
@@ -29,6 +30,7 @@ namespace ConsoleDE.Base {
             this.System = ContentManager.LoadSystemFont(this.FamilyName, this.Style, this.Settings);
         }
 
+        [Pure]
         public static implicit operator FontSystem(Font font) => font.System;
     }
 }

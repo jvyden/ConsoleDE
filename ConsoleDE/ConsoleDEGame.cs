@@ -1,8 +1,7 @@
-using System.Numerics;
 using ConsoleDE.Base;
 using ConsoleDE.Screens;
-using Eto.Drawing;
 using Furball.Engine;
+using Silk.NET.Windowing;
 using Fonts = ConsoleDE.Base.Fonts;
 
 namespace ConsoleDE {
@@ -20,6 +19,17 @@ namespace ConsoleDE {
                 this.palette = value;
                 (this.RunningScreen as ConsoleScreen)?.UpdateColors();
             }
+        }
+
+        public void Run(WindowOptions options) {
+            base.Run(options);
+        }
+
+        protected override void Initialize() {
+            base.Initialize();
+            
+            this.WindowManager.TargetUnfocusedFramerate = 30;
+            this.WindowManager.TargetUnfocusedUpdaterate = 30;
         }
 
         protected override void LoadContent() {

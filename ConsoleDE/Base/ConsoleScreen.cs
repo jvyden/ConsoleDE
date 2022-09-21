@@ -1,6 +1,5 @@
 using System.Linq;
 using Furball.Engine.Engine;
-using Furball.Engine.Engine.Graphics.Drawables.Primitives;
 using Furball.Engine.Engine.Graphics.Drawables.UiElements;
 
 namespace ConsoleDE.Base {
