@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 using ConsoleDE.Base.Applications;
@@ -20,15 +21,7 @@ namespace ConsoleDE.Screens {
                 this.hideButtonOnClick)
             );
 
-            this.Manager.Add(new ConsoleButton(new Vector2(20, 90),
-                Fonts.Default,
-                24,
-                "Launch RetroArch",
-                new Vector2(250, 50),
-                this.retroArchButtonOnClick)
-            );
-
-            this.Manager.Add(new ConsoleButton(new Vector2(20, 160),
+            this.Manager.Add(new ConsoleButton(new Vector2(290, 20),
                 Fonts.Default,
                 24,
                 "Cycle Themes",
@@ -37,11 +30,20 @@ namespace ConsoleDE.Screens {
             );
 
             DesktopFileParser parser = new();
-            DesktopApplication appVLC = new(parser.Parse("/usr/share/applications/vlc.desktop"));
-            DesktopApplication appSteam = new(parser.Parse("/usr/share/applications/steam.desktop"));
+
+            List<DesktopApplication> applications = new() {
+                new DesktopApplication(parser.Parse("/usr/share/applications/vlc.desktop")),
+                new DesktopApplication(parser.Parse("/usr/share/applications/steam.desktop")),
+                new DesktopApplication(parser.Parse("/usr/share/applications/retroarch.desktop")),
+            };
+
+            float y = FurballGame.WindowHeight / 2 - 220 / 2;
             
-            this.Manager.Add(new DrawableDesktopApplication(new Vector2(320, 20), appVLC));
-            this.Manager.Add(new DrawableDesktopApplication(new Vector2(560, 20), appSteam));
+            int i = 0;
+            foreach(DesktopApplication application in applications) {
+                this.Manager.Add(new DrawableDesktopApplication(new Vector2(20 + (i * 240), y), application));
+                i++;
+            }
         }
 
         private void hideButtonOnClick(object? sender, MouseButtonEventArgs e) {
@@ -50,10 +52,6 @@ namespace ConsoleDE.Screens {
             FurballGame.GameTimeScheduler.ScheduleMethod(delegate {
                 ConsoleDEGame.Instance.WindowSuspensionService.Show();
             }, FurballGame.Time + 5000d);
-        }
-
-        private void retroArchButtonOnClick(object? sender, MouseButtonEventArgs e) {
-            Process.Start(new ProcessStartInfo("retroarch"));
         }
 
         private int currentTheme = 1;

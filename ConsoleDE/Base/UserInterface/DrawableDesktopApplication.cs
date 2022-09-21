@@ -21,15 +21,14 @@ namespace ConsoleDE.Base.UserInterface {
         
         public DrawableDesktopApplication(Vector2 position, DesktopApplication application) {
             this.application = application;
-            string? iconPath = this.application.IconPath;
+            Texture? iconTexture = this.application.Icon;
 
             this.Position = position;
 
             this.box = new DrawableBorderedBox(Vector2.Zero, new Vector2(220, 220));
             this.Drawables.Add(box);
             
-            if(iconPath != null) {
-                Texture iconTexture = ContentManager.LoadTextureFromFileCached(this.application.IconPath, ContentSource.External);
+            if(iconTexture != null) {
                 icon = new TexturedDrawable(iconTexture, Vector2.Zero);
                 this.icon.OriginType = OriginType.Center;
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Furball.Engine.Engine.Graphics;
+using Furball.Vixie;
 
 namespace ConsoleDE.Base.Applications {
     public class DesktopApplication {
@@ -24,7 +26,7 @@ namespace ConsoleDE.Base.Applications {
         public string Arguments { get; }
 
         // please keep in order from largest to smallest!!!
-        private static readonly string[] sizes = {
+        private static readonly string[] hicolorSizes = {
 //            "1024x1024",
 //            "512x512",
 //            "480x480",
@@ -52,16 +54,45 @@ namespace ConsoleDE.Base.Applications {
             "16x16",
         };
 
-        private string? iconPath;
-        public string? IconPath {
+        private string? _iconPath;
+        private Texture? icon;
+
+        public Texture? Icon {
             get {
-                foreach(string size in sizes) {
-                    string path = $"/usr/share/icons/hicolor/{size}/apps/{DesktopFile.IconName}.png";
+                if(icon != null) return this.icon;
+
+                string? path = iconPath;
+                if(path == null) return null;
+
+                return Path.GetExtension(path) switch {
+                    ".png" => ContentManager.LoadTextureFromFileCached(path, ContentSource.External),
+                    ".svg" => IconHelper.LoadSVG(path),
+                    ".xpm" => IconHelper.LoadPixmap(path),
+                    _ => null,
+                };
+            }
+        }
+        
+        private string? iconPath {
+            get {
+                if(this._iconPath != null) return this._iconPath;
+
+                string path;
+                
+                foreach(string size in hicolorSizes) {
+                    path = $"/usr/share/icons/hicolor/{size}/apps/{DesktopFile.IconName}.png";
                     if(File.Exists(path)) {
-                        this.iconPath = path;
+                        this._iconPath = path;
                         return path;
                     }
                 }
+
+                path = $"/usr/share/pixmaps/{DesktopFile.IconName}.svg";
+                if(File.Exists(path)) {
+                    this._iconPath = path;
+                    return path;
+                }
+                
                 return null;
             }
         }
