@@ -1,3 +1,8 @@
+using System;
+using System.Diagnostics;
+using System.Text.Json;
+using System.Threading;
+using ConsoleDE.Base.Applications;
 using Silk.NET.Windowing;
 
 namespace ConsoleDE {

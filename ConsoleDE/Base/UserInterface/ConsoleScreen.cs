@@ -29,6 +29,10 @@ namespace ConsoleDE.Base.UserInterface {
         public void UpdateColors(ColorPalette palette) {
             this.background?.FadeColor(palette.BackgroundColor, 500);
 
+            foreach(ISupportsPalettes drawable in this.Manager.Drawables.OfType<ISupportsPalettes>()) {
+                drawable.UpdateColors(palette);
+            }
+            
             foreach(DrawableButton button in this.Manager.Drawables.OfType<DrawableButton>()) {
                 button.ButtonColor = palette.PrimaryColor;
                 button.TextColor = palette.TextColor;

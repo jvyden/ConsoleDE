@@ -1,8 +1,10 @@
 using System.Diagnostics;
 using System.Numerics;
+using ConsoleDE.Base.Applications;
 using ConsoleDE.Base.Styling;
 using ConsoleDE.Base.UserInterface;
 using Furball.Engine;
+using Furball.Engine.Engine.Graphics.Drawables.UiElements;
 using Furball.Engine.Engine.Input.Events;
 
 namespace ConsoleDE.Screens {
@@ -33,6 +35,12 @@ namespace ConsoleDE.Screens {
                 new Vector2(250, 50),
                 this.themeTestScreenButtonOnClick)
             );
+
+            DesktopFileParser parser = new("/usr/share/applications/vlc.desktop");
+            DesktopFile file = parser.Parse();
+            DesktopApplication app = new(file);
+            
+            this.Manager.Add(new DrawableDesktopApplication(new Vector2(320, 20), app));
         }
 
         private void hideButtonOnClick(object? sender, MouseButtonEventArgs e) {
