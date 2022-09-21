@@ -51,16 +51,12 @@ namespace ConsoleDE.Screens {
             Process.Start(new ProcessStartInfo("retroarch"));
         }
 
-        private int currentTheme = 0;
+        private int currentTheme = 1;
         private void themeTestScreenButtonOnClick(object? sender, MouseButtonEventArgs e) {
-            ConsoleDEGame.Instance.CurrentPalette = this.currentTheme switch {
-                0 => Palettes.Dark,
-                1 => Palettes.Slate,
-                2 => Palettes.Light,
-            };
+            ConsoleDEGame.Instance.CurrentPalette = Palettes.AllPalettes[this.currentTheme];
             
             this.currentTheme++;
-            if(this.currentTheme == 3) {
+            if(this.currentTheme == Palettes.AllPalettes.Count) {
                 this.currentTheme = 0;
             }
         }

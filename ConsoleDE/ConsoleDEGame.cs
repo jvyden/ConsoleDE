@@ -10,7 +10,7 @@ namespace ConsoleDE {
 
         public new static ConsoleDEGame Instance => (ConsoleDEGame)FurballGame.Instance;
 
-        private ColorPalette palette = Palettes.Light;
+        private ColorPalette palette = Palettes.AllPalettes[0];
         public ColorPalette CurrentPalette {
             get => this.palette;
             set {
