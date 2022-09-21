@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.Tracing;
 using Furball.Vixie;
 using Furball.Vixie.Backends.Shared.Backends;
 

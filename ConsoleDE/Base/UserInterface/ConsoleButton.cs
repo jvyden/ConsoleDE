@@ -1,9 +1,10 @@
 using System;
 using System.Numerics;
+using ConsoleDE.Base.Styling;
 using Furball.Engine.Engine.Graphics.Drawables.UiElements;
 using Furball.Engine.Engine.Input.Events;
 
-namespace ConsoleDE.Base {
+namespace ConsoleDE.Base.UserInterface {
     /// <summary>
     /// A <c>DrawableButton</c> that takes in a delegate and a palette.
     /// </summary>

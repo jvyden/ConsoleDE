@@ -1,10 +1,9 @@
 using System.Diagnostics;
 using System.Numerics;
-using ConsoleDE.Base;
+using ConsoleDE.Base.Styling;
+using ConsoleDE.Base.UserInterface;
 using Furball.Engine;
 using Furball.Engine.Engine.Input.Events;
-using Furball.Vixie;
-using Furball.Vixie.Backends.Shared.Backends;
 
 namespace ConsoleDE.Screens {
     public class MainScreen : ConsoleScreen {

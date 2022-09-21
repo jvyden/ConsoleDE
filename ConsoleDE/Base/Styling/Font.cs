@@ -3,7 +3,7 @@ using FontStashSharp;
 using Furball.Engine.Engine.Graphics;
 using SixLabors.Fonts;
 
-namespace ConsoleDE.Base {
+namespace ConsoleDE.Base.Styling {
     public class Font {
         internal readonly FontSystemSettings Settings;
         internal FontSystem System { get; private set; }

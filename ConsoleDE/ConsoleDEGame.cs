@@ -1,9 +1,10 @@
-using ConsoleDE.Base;
+using ConsoleDE.Base.Styling;
+using ConsoleDE.Base.UserInterface;
 using ConsoleDE.Screens;
 using ConsoleDE.Services;
 using Furball.Engine;
 using Silk.NET.Windowing;
-using Fonts = ConsoleDE.Base.Fonts;
+using Fonts = ConsoleDE.Base.Styling.Fonts;
 
 namespace ConsoleDE {
     public class ConsoleDEGame : FurballGame {

@@ -1,5 +1,3 @@
-using Silk.NET.Windowing;
-
 namespace ConsoleDE.Services {
     public class WindowStateSuspensionService : IWindowSuspensionService {
         private readonly ConsoleDEGame game;

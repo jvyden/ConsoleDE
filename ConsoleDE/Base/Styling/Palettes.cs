@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Furball.Vixie.Backends.Shared;
 
-namespace ConsoleDE.Base {
+namespace ConsoleDE.Base.Styling {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class Palettes {
         public static readonly ColorPalette Light = new() {

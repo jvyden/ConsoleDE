@@ -1,11 +1,11 @@
 using System.Linq;
 using System.Numerics;
+using ConsoleDE.Base.Styling;
 using Furball.Engine.Engine;
 using Furball.Engine.Engine.Graphics.Drawables.Primitives;
-using Furball.Engine.Engine.Graphics.Drawables.Tweens;
 using Furball.Engine.Engine.Graphics.Drawables.UiElements;
 
-namespace ConsoleDE.Base {
+namespace ConsoleDE.Base.UserInterface {
     public class ConsoleScreen : Screen {
         private protected RectanglePrimitiveDrawable? background;
 

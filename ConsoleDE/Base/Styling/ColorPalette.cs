@@ -1,6 +1,6 @@
 using Furball.Vixie.Backends.Shared;
 
-namespace ConsoleDE.Base {
+namespace ConsoleDE.Base.Styling {
     public class ColorPalette {
         public Color PrimaryColor;
         public Color SecondaryColor;
