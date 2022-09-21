@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Furball.Engine;
 using Furball.Engine.Engine.Graphics;
 using Furball.Vixie;
 
@@ -100,9 +101,16 @@ namespace ConsoleDE.Base.Applications {
         public Process? Execute() {
             ProcessStartInfo psi = new() {
                 WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                FileName = ExecutablePath,
-                Arguments = Arguments,
             };
+
+            if(ConsoleDEGame.Instance.GamescopeAvailable) {
+                psi.FileName = "gamescope";
+                psi.Arguments = $"-f -w {FurballGame.RealWindowWidth} -h {FurballGame.RealWindowHeight} -- {this.ExecutablePath} {this.Arguments}";
+            }
+            else {
+                psi.FileName = ExecutablePath;
+                psi.Arguments = Arguments;
+            }
 
             return Process.Start(psi);
         }

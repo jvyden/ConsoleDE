@@ -18,6 +18,7 @@ namespace ConsoleDE.Base {
             ms.Position = 0;
             
             Texture texture = Texture.CreateTextureFromStream(ms);
+            texture.Name = path;
             return texture;
         }
 

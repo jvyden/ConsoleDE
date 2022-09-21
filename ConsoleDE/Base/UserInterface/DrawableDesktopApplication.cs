@@ -26,6 +26,10 @@ namespace ConsoleDE.Base.UserInterface {
             this.Position = position;
 
             this.box = new DrawableBorderedBox(Vector2.Zero, new Vector2(220, 220));
+            this.box.ToolTip = application.DesktopFile.Comment;
+            #if DEBUG
+            this.box.ToolTip += $" ({nameof(DesktopFile.Exec)}: {application.DesktopFile.Exec})";
+            #endif
             this.Drawables.Add(box);
             
             if(iconTexture != null) {
@@ -89,7 +93,7 @@ namespace ConsoleDE.Base.UserInterface {
             }
 
             this.text.Position.X = this.box.Size.X / 2;
-            this.text.Position.Y = this.box.Size.Y - this.text.Size.Y - 5;
+            this.text.Position.Y = this.box.Size.Y - 30;
         }
     }
 }

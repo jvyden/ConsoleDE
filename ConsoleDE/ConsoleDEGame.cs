@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using ConsoleDE.Base.Styling;
 using ConsoleDE.Base.UserInterface;
 using ConsoleDE.Screens;
@@ -13,6 +14,8 @@ namespace ConsoleDE {
 
         public new static ConsoleDEGame Instance => (ConsoleDEGame)FurballGame.Instance;
         public IWindowSuspensionService WindowSuspensionService;
+
+        public bool GamescopeAvailable { get; private set; } = false;
 
         private ColorPalette palette = Palettes.AllPalettes[0];
         public ColorPalette CurrentPalette {
@@ -41,8 +44,15 @@ namespace ConsoleDE {
             
             this.WindowManager.TargetUnfocusedUpdaterate = 30;
 
-//            this.WindowSuspensionService = new WindowBackendSuspensionService(this);
-            this.WindowSuspensionService = new WindowStateSuspensionService(this);
+            this.WindowSuspensionService = new WindowBackendSuspensionService(this);
+//            this.WindowSuspensionService = new WindowStateSuspensionService(this);
+            
+            Process? gamescopeProcess = Process.Start("gamescope", "--help");
+            if(gamescopeProcess == null) GamescopeAvailable = false;
+            else {
+                gamescopeProcess.WaitForExit();
+                GamescopeAvailable = gamescopeProcess.ExitCode == 0;
+            }
             
             base.AfterScreenChange += AfterScreenChange;
         }
