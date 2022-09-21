@@ -1,15 +1,17 @@
 using Furball.Vixie.Backends.Shared;
 
 namespace ConsoleDE.Base {
-    public readonly struct ColorPalette {
-        public readonly Color PrimaryColor;
-        public readonly Color SecondaryColor;
-        public readonly Color TextColor;
-        
-        public ColorPalette(Color primary, Color secondary, Color text) {
-            this.PrimaryColor = primary;
-            this.SecondaryColor = secondary;
-            this.TextColor = text;
+    public class ColorPalette {
+        public Color PrimaryColor;
+        public Color SecondaryColor;
+        public Color TextColor;
+        public Color BackgroundColor;
+
+        public ColorPalette() {
+            this.PrimaryColor = Color.Black;
+            this.SecondaryColor = Color.Black;
+            this.TextColor = Color.Black;
+            this.BackgroundColor = Color.Black;
         }
     }
 }

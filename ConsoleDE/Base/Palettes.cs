@@ -8,10 +8,24 @@ using Furball.Vixie.Backends.Shared;
 namespace ConsoleDE.Base {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class Palettes {
-        public static readonly ColorPalette Light = new(Color.White, Color.LightGray, Color.Black);
-        public static readonly ColorPalette Dark = new(Color.Black, Color.DimGray, Color.White);
-        public static readonly ColorPalette Purple = new(new Color(110,101,168), new Color(127,116,194), new Color(246,245,252));
-        public static readonly ColorPalette Vomit = new(Color.Red, Color.Green, Color.Blue);
+        public static readonly ColorPalette Light = new() {
+            PrimaryColor = Color.White,
+            SecondaryColor = Color.LightGray,
+            TextColor = Color.Black,
+            BackgroundColor = Color.DarkRed,
+        };
+        
+        public static readonly ColorPalette Dark = new() {
+            PrimaryColor = Color.Black,
+            SecondaryColor = Color.DimGray,
+            TextColor = Color.White,
+        };
+        
+        public static readonly ColorPalette Purple = new() {
+            PrimaryColor = new Color(110,101,168),
+            SecondaryColor = new Color(127,116,194),
+            TextColor = new Color(246,245,252),
+        };
 
         #region Palette List
         private static readonly List<ColorPalette> palettes = new();
@@ -33,7 +47,7 @@ namespace ConsoleDE.Base {
                     throw new ArgumentException($"{field.Name} is somehow not a {nameof(ColorPalette)}");
                 }
                 
-                palettes.Add(palette.Value);
+                palettes.Add(palette);
             }
         }
         #endregion

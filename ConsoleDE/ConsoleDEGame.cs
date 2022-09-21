@@ -15,7 +15,7 @@ namespace ConsoleDE {
             get => this.palette;
             set {
                 this.palette = value;
-                (this.RunningScreen as ConsoleScreen)?.UpdateColors();
+                (this.RunningScreen as ConsoleScreen)?.UpdateColors(value);
             }
         }
 

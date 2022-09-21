@@ -9,6 +9,8 @@ using Furball.Vixie.Backends.Shared.Backends;
 namespace ConsoleDE.Screens {
     public class MainScreen : ConsoleScreen {
         public override void Initialize() {
+            base.Initialize();
+            
             this.Manager.Add(new ConsoleButton(new Vector2(20, 20),
                 Fonts.DefaultFont,
                 24,
