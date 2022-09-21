@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Furball.Engine.Engine;
 using Furball.Engine.Engine.Graphics.Drawables.Primitives;
+using Furball.Engine.Engine.Graphics.Drawables.Tweens;
 using Furball.Engine.Engine.Graphics.Drawables.UiElements;
 
 namespace ConsoleDE.Base {
@@ -26,7 +27,7 @@ namespace ConsoleDE.Base {
         }
 
         public void UpdateColors(ColorPalette palette) {
-            if(this.background != null) this.background.ColorOverride = palette.BackgroundColor;
+            this.background?.FadeColor(palette.BackgroundColor, 500);
 
             foreach(DrawableButton button in this.Manager.Drawables.OfType<DrawableButton>()) {
                 button.ButtonColor = palette.PrimaryColor;
