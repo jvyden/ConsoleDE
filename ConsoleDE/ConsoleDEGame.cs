@@ -44,16 +44,19 @@ namespace ConsoleDE {
             
             this.WindowManager.TargetUnfocusedUpdaterate = 30;
 
-            this.WindowSuspensionService = new WindowBackendSuspensionService(this);
-//            this.WindowSuspensionService = new WindowStateSuspensionService(this);
-            
-            Process? gamescopeProcess = Process.Start("gamescope", "--help");
-            if(gamescopeProcess == null) GamescopeAvailable = false;
-            else {
-                gamescopeProcess.WaitForExit();
-                GamescopeAvailable = gamescopeProcess.ExitCode == 0;
+//            this.WindowSuspensionService = new WindowBackendSuspensionService(this);
+            this.WindowSuspensionService = new WindowStateSuspensionService(this);
+
+            // Gamescope does not like the state suspension service
+            if(this.WindowSuspensionService is WindowBackendSuspensionService) {
+                Process? gamescopeProcess = Process.Start("gamescope", "--help");
+                if(gamescopeProcess == null) GamescopeAvailable = false;
+                else {
+                    gamescopeProcess.WaitForExit();
+                    GamescopeAvailable = gamescopeProcess.ExitCode == 0;
+                }
             }
-            
+
             base.AfterScreenChange += AfterScreenChange;
         }
         

@@ -79,7 +79,7 @@ namespace ConsoleDE.Base.UserInterface {
             }
 
             // ReSharper disable once RedundantAssignment
-            FurballGame.TimeStepMethods.Add(method = new FixedTimeStepMethod(1000, showAfterExecutionComplete));
+            FurballGame.TimeStepMethods.Add(method = new FixedTimeStepMethod(100, showAfterExecutionComplete));
         }
 
         public override Vector2 Size => this.box.Size;
