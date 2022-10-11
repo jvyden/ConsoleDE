@@ -9,11 +9,7 @@ namespace ConsoleDE {
     internal static class Program {
         internal static void Main(string[] args) {
             WindowOptions options = WindowOptions.Default;
-            
-            // We don't need low latency and high framerates.
-            // Just stick to what the display is capable of.
-            options.VSync = true;
-            
+
             // On a developer system, fullscreen would get in the way.
             // The intended use-case is being a "desktop environment" of sorts, on a dedicated computer.
             //

@@ -3,10 +3,12 @@ using ConsoleDE.Base.Styling;
 using ConsoleDE.Base.UserInterface;
 using ConsoleDE.Screens;
 using ConsoleDE.Services;
+using Eto.Forms;
 using Furball.Engine;
-using Furball.Engine.Engine;
+using Furball.Engine.Engine.Graphics.Drawables;
 using Silk.NET.Windowing;
 using Fonts = ConsoleDE.Base.Styling.Fonts;
+using Screen = Furball.Engine.Engine.Screen;
 
 namespace ConsoleDE {
     public class ConsoleDEGame : FurballGame {
@@ -35,14 +37,21 @@ namespace ConsoleDE {
         protected override void Initialize() {
             base.Initialize();
 
+            TooltipDrawable.TextDrawable.SetFont(Fonts.Default, TooltipDrawable.TextDrawable.FontSize);
+
             // When unfocused, limit to 30fps (debug) or 1fps (release).
             #if DEBUG
             this.WindowManager.TargetUnfocusedFramerate = 30;
             #else
             this.WindowManager.TargetUnfocusedFramerate = 1;
             #endif
-            
+
             this.WindowManager.TargetUnfocusedUpdaterate = 30;
+            this.WindowManager.EnableUnfocusCap = true;
+
+            // We don't need low latency and high framerates.
+            // Just stick to what the display is capable of.
+            this.WindowManager.VerticalSync = true;
 
 //            this.WindowSuspensionService = new WindowBackendSuspensionService(this);
             this.WindowSuspensionService = new WindowStateSuspensionService(this);
@@ -59,7 +68,7 @@ namespace ConsoleDE {
 
             base.AfterScreenChange += AfterScreenChange;
         }
-        
+
         private new void AfterScreenChange(object? sender, Screen e) {
             (this.RunningScreen as ConsoleScreen)?.UpdateColors(this.CurrentPalette);
         }

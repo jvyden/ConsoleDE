@@ -37,7 +37,7 @@ namespace ConsoleDE.Base.UserInterface {
                 }
 
                 if(drawable is CompositeDrawable compositeDrawable) {
-                    UpdateColorsRecursively(compositeDrawable.Drawables, palette);
+                    UpdateColorsRecursively(compositeDrawable.Children, palette);
                 }
             }
         }

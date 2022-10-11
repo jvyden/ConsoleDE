@@ -30,7 +30,7 @@ namespace ConsoleDE.Base.UserInterface {
             #if DEBUG
             this.box.ToolTip += $" ({nameof(DesktopFile.Exec)}: {application.DesktopFile.Exec})";
             #endif
-            this.Drawables.Add(box);
+            this.Children.Add(box);
             
             if(iconTexture != null) {
                 icon = new TexturedDrawable(iconTexture, Vector2.Zero);
@@ -39,16 +39,16 @@ namespace ConsoleDE.Base.UserInterface {
                 Vector2 targetSize = new(110, 110);
                 icon.Scale = targetSize / icon.Size;
 
-                this.Drawables.Add(icon);
+                this.Children.Add(icon);
             }
 
             this.text = new ConsoleText(Vector2.Zero, Fonts.Default, application.DesktopFile.Name, 24);
             this.text.OriginType = OriginType.Center;
-            this.Drawables.Add(this.text);
+            this.Children.Add(this.text);
             
-            this.Drawables.Add(this.box.OutlineDrawable);
+            this.Children.Add(this.box.OutlineDrawable);
 
-            foreach(Drawable drawable in this.Drawables) {
+            foreach(Drawable drawable in this.Children) {
                 drawable.OnClick += this.onClick;
             }
             

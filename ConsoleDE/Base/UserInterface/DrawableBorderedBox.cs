@@ -12,8 +12,8 @@ namespace ConsoleDE.Base.UserInterface {
             this.backgroundDrawable = new RectanglePrimitiveDrawable(position, size, 1, true);
             this.OutlineDrawable = new RectanglePrimitiveDrawable(position, size, borderSize, false);
             
-            this.Drawables.Add(this.backgroundDrawable);
-            if(!dontAddOutline) this.Drawables.Add(this.OutlineDrawable);
+            this.Children.Add(this.backgroundDrawable);
+            if(!dontAddOutline) this.Children.Add(this.OutlineDrawable);
         }
 
         public void UpdateColors(ColorPalette palette) {
