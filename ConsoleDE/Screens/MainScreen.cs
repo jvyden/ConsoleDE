@@ -32,8 +32,8 @@ namespace ConsoleDE.Screens {
             DesktopFileParser parser = new();
 
             List<DesktopApplication> applications = new() {
-                new DesktopApplication(parser.Parse("/usr/share/applications/vlc.desktop")),
-                new DesktopApplication(parser.Parse("/usr/share/applications/steam.desktop")),
+//                new DesktopApplication(parser.Parse("/usr/share/applications/vlc.desktop")),
+//                new DesktopApplication(parser.Parse("/usr/share/applications/steam.desktop")),
                 new DesktopApplication(parser.Parse("/usr/share/applications/retroarch.desktop")),
             };
 
